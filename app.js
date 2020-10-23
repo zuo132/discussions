@@ -3,8 +3,13 @@ const dotenv = require("dotenv");
 const exphbs = require("express-handlebars");
 const morgan = require("morgan");
 
+const connectDB = require("./config/db")
+
 // Load config
 dotenv.config({ path: "./config/config.env" });
+
+// Connect to database
+connectDB();
 
 const app = express();
 
