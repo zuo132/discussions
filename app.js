@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const exphbs = require("express-handlebars");
 const morgan = require("morgan");
 
-const connectDB = require("./config/db")
+const connectDB = require("./config/db");
 
 // Load config
 dotenv.config({ path: "./config/config.env" });
@@ -12,6 +12,10 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 
 const app = express();
+
+// Body parsers
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Morgan
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
@@ -28,6 +32,7 @@ app.set("view engine", ".hbs");
 
 // Routes
 app.use("/", require("./routes/index"));
+app.use("/auth", require("./routes/auth"));
 
 const PORT = process.env.PORT || 5000;
 
