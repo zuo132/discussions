@@ -39,11 +39,12 @@ app.use(auth);
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated || null;
     next();
-})
+});
 
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
+app.use("/posts", require("./routes/posts"));
 
 // Static folder
 app.use(express.static(path.join(__dirname, "public")));

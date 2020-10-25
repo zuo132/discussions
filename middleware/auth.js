@@ -57,7 +57,7 @@ module.exports = {
                 isAuthenticated = true;
             } catch (error) {
                 console.error(error);
-                res.render("error/500");
+                res.render("errors/500");
             }
         } else if (url ==="/auth/logout") {
             user = null;

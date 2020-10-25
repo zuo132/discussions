@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { ensureAuth, ensureGuest} = require("../middleware/auth")
+const { ensureGuest} = require("../middleware/auth")
 
 // @desc    Landing page
 // @route   GET /
