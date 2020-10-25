@@ -3,16 +3,25 @@
     <form action="/auth/signup" method="POST" class="col s12">
         <div class="row">
             <div class="input-field">
+                {{#if username}}
+                <input type="text" id="username" name="username" required="true" class="validate" value={{username}}>
+                {{else}}
                 <input type="text" id="username" name="username" required="true" class="validate">
+                {{/if}}
                 <label for="username">Username</label>
                 {{#if isUsernameUsed}}
-                    <span class="helper-text">test test</span>
+                <span class="helper-text" style="color:red">User name already exists</span>
                 {{/if}}
             </div>
         </div>
         <div class="row">
             <div class="input-field">
+                {{#if password}}
+                <input type="password" id="password" name="password" required="true" minlength="8" class="validate"
+                    value={{password}}>
+                {{else}}
                 <input type="password" id="password" name="password" required="true" minlength="8" class="validate">
+                {{/if}}
                 <label for="password">Password</label>
             </div>
         </div>

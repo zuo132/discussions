@@ -1,26 +1,24 @@
-const express = require("express")
+const express = require("express");
 const router = express.Router();
 
-const User = require("../models/User")
+const User = require("../models/User");
 
 // @desc    Handle user sign up
-// @route   GET /auth/signup
-router.post("/signup", async (req, res) => {
-    try {
-        const user = await User.findOne({ username: req.body.username });
+// @route   POST /auth/signup
+router.post("/signup", (req, res) => {
+    if (req.isAuthenticated) res.redirect("/");
+});
 
-        if (user) {
-            return res.render("signup", {
-                isUsernameUsed: true
-            })
-        }
+// @desc    Handle user log in
+// @route   POST /auth/login
+router.post("/login", (req, res) => {
+    if (req.isAuthenticated) res.redirect("/");
+});
 
-        await User.create(req.body)
-        res.redirect("/");
-    } catch (error) {
-        console.error(error)
-        res.render("errors/500")
-    }
-})
+// @desc    Handle user log out
+// @route   GET /auth/logout
+router.get("/logout", (req, res) => {
+    res.redirect("/");
+});
 
 module.exports = router;

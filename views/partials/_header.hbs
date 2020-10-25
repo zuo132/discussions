@@ -3,8 +3,13 @@
         <a href="/" class="brand-logo">Document</a>
         <a href="" data-target="side-nav" class="sidenav-trigger show-on-large right"><i class="fas fa-bars"></i></a>
         <ul id="side-nav" class="sidenav right">
+            <li><a href="/">Home</a></li>
+            {{#if isAuthenticated}}
+            <li><a href="/auth/logout">Log Out</a></li>
+            {{else}}
             <li><a href="/signup">Sign Up</a></li>
             <li><a href="/login">Log In</a></li>
+            {{/if}}
         </ul>
     </div>
 </nav>

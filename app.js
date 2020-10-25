@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv");
 const exphbs = require("express-handlebars");
@@ -30,9 +31,22 @@ app.engine(
 );
 app.set("view engine", ".hbs");
 
+// Authentication middleware
+const { auth } = require("./middleware/auth");
+app.use(auth);
+
+// Set express global var for handlebars
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.isAuthenticated || null;
+    next();
+})
+
 // Routes
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
+
+// Static folder
+app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 5000;
 
