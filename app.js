@@ -22,14 +22,15 @@ app.use(express.urlencoded({ extended: false }));
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // Handlebars helpers
-const { stripTags } = require("./helpers/hbs")
+const { stripTags, formatDate } = require("./helpers/hbs")
 
 // Handlebars
 app.engine(
     ".hbs",
     exphbs({
         helpers: {
-            stripTags
+            stripTags,
+            formatDate
         },
         defaultLayout: "main",
         extname: ".hbs",

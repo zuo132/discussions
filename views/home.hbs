@@ -10,11 +10,12 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title" style="font-weight: bold">{{title}}</span>
-                <p>{{stripTags body}}</p>
+                <p style="padding-bottom: 1.5rem">{{stripTags body}}</p>
+                <span class="right">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
             </div>
             <div class="card-action">
-                <a href="/posts/show">Show</a>
-                <a href="#">{{user.username}}</a>
+                <a href="/posts/show/{{_id}}">Show</a>
+                <a href="/posts/{{user._id}}">{{user.username}}</a>
             </div>
         </div>
     </div>
