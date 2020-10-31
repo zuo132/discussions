@@ -5,6 +5,7 @@
         <ul id="side-nav" class="sidenav right">
             <li><a href="/">Home</a></li>
             {{#if isAuthenticated}}
+            <li><a href="/user/posts">My Posts</a></li>
             <li><a href="/auth/logout">Log Out</a></li>
             {{else}}
             <li><a href="/signup">Sign Up</a></li>

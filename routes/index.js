@@ -11,9 +11,8 @@ router.get("/", async (req, res) => {
     try {
         const posts = await Post.find({}, null, { limit: 10 })
             .populate("user")
-            .sort({ createAT: "desc" })
+            .sort({ createdAt: "desc" })
             .lean();
-            
         res.render("home", { posts });
     } catch (error) {
         console.error(error);

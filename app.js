@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
 // Handlebars helpers
-const { stripTags, formatDate } = require("./helpers/hbs")
+const { stripTags, formatDate, truncate } = require("./helpers/hbs");
 
 // Handlebars
 app.engine(
@@ -30,7 +30,8 @@ app.engine(
     exphbs({
         helpers: {
             stripTags,
-            formatDate
+            formatDate,
+            truncate,
         },
         defaultLayout: "main",
         extname: ".hbs",
@@ -53,6 +54,7 @@ app.use((req, res, next) => {
 app.use("/", require("./routes/index"));
 app.use("/auth", require("./routes/auth"));
 app.use("/posts", require("./routes/posts"));
+app.use("/user", require("./routes/user"));
 
 // Static folder
 app.use(express.static(path.join(__dirname, "public")));

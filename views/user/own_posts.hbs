@@ -1,0 +1,18 @@
+<h1>{{user.username}}</h1>
+{{#if posts}}
+<ul class="collapsible">
+    {{#each posts}}
+    <li>
+        <div class="collapsible-header">
+            {{title}}
+        </div>
+        <div class="collapsible-body">
+            <p style="padding-bottom: 2rem">{{stripTags body}}</p>
+            <span style="font-size: 0.8rem">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<p class="center">You have not create any posts yet</p>
+{{/if}}

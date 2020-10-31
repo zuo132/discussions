@@ -1,4 +1,4 @@
-<h1>Home Page</h1>
+<h1>Posts</h1>
 {{#if user}}
 <p>Welcome <span style="font-weight: bold">{{user.username}}</span></p>
 {{/if}}
@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title" style="font-weight: bold">{{title}}</span>
-                <p style="padding-bottom: 1.5rem">{{stripTags body}}</p>
+                <p style="padding-bottom: 1.5rem">{{truncate (stripTags body) 500}}</p>
                 <span class="right">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
             </div>
             <div class="card-action">
