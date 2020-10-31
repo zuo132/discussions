@@ -21,10 +21,16 @@ app.use(express.urlencoded({ extended: false }));
 // Morgan
 if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 
+// Handlebars helpers
+const { stripTags } = require("./helpers/hbs")
+
 // Handlebars
 app.engine(
     ".hbs",
     exphbs({
+        helpers: {
+            stripTags
+        },
         defaultLayout: "main",
         extname: ".hbs",
     })
@@ -38,6 +44,7 @@ app.use(auth);
 // Set express global var for handlebars
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated || null;
+    res.locals.user = req.user || null;
     next();
 });
 
