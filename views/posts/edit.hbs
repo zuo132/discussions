@@ -1,0 +1,23 @@
+<h2>Edit Post</h2>
+<div class="row">
+    <form action="/posts/{{post._id}}" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" name="title" id="title" required="true" value="{{post.title}}">
+                <label for="title">Title</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field">
+                <h5>Body</h5>
+                <textarea name="body" id="body">{{post.body}}</textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" value="edit" class="btn">
+        </div>
+    </form>
+</div>

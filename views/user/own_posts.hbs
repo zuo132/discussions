@@ -5,10 +5,18 @@
     <li>
         <div class="collapsible-header">
             {{title}}
+            <span class="badge">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
         </div>
         <div class="collapsible-body">
             <p style="padding-bottom: 2rem">{{stripTags body}}</p>
-            <span style="font-size: 0.8rem">{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</span>
+            <div>
+                <a href="/posts/edit/{{_id}}" class="btn blue" style="float: left; margin-right: 1rem">Edit</a>
+
+                <form action="/posts/{{_id}}" method="POST" id="delete-form">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn red">Delete</button>
+                </form>
+            </div>
         </div>
     </li>
     {{/each}}
